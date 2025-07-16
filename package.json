@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cd /node_modules/sqlite3 && pnpm run rebuild && next build",
+    "build": "cd node_modules/sqlite3 && pnpm run rebuild && next build",
     "start": "next start",
     "lint": "next lint"
   },
