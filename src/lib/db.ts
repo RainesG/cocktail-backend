@@ -2,9 +2,9 @@ import mysql from 'mysql2/promise';
 
 // Database configuration
 const dbConfig = {
-  user: 'root',
+  user: process.env.DB_USER || 'raines',
   host: process.env.DB_HOST || `localhost`,
-  password: process.env.DB_PASSWORD || '',
+  password: process.env.DB_PASSWORD || 'Raines@mysql',
   database: process.env.DB_NAME || 'cocktail_db',
   charset: 'utf8mb4', // Support Chinese characters
   waitForConnections: true,
