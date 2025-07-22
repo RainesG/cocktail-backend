@@ -26,6 +26,7 @@ export async function GET(request: Request): Promise<NextResponse> {
         glass,
         ingredients
         instructions,
+        IBA
       FROM all_drinks
     `;
 
