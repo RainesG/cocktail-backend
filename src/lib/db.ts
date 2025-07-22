@@ -3,7 +3,7 @@ import mysql from 'mysql2/promise';
 // Database configuration
 const dbConfig = {
   user: process.env.DB_USER || 'raines',
-  host: process.env.DB_HOST || `localhost`,
+  host: process.env.DB_HOST || `rm-bp17l59k37432y868go.mysql.rds.aliyuncs.com`,
   password: process.env.DB_PASSWORD || 'Raines@mysql',
   database: process.env.DB_NAME || 'cocktail_db',
   charset: 'utf8mb4', // Support Chinese characters
