@@ -17,26 +17,26 @@ export async function GET(request: Request): Promise<NextResponse> {
 
     let query = `
       SELECT
-        strDrink,
+        name,
         dateModified,
-        idDrink,
-        strAlcoholic,
-        strCategory,
-        strDrinkThumb,
-        strGlass,
+        id,
+        alcoholic,
+        category,
+        thumb,
+        glass,
         strIngredient1,
         strIngredient2,
-        strInstructions,
+        instructions,
         strMeasure1,
         strMeasure2
       FROM all_drinks
     `;
 
     if (name) {
-      query += `WHERE strDrink LIKE ${JSON.stringify(name)}`;
+      query += `WHERE name LIKE ${JSON.stringify(name)}`;
     }
 
-    query += ` ORDER BY strDrink ASC`;
+    query += ` ORDER BY name ASC`;
 
     console.log('Final query:', query);
 
