@@ -24,7 +24,7 @@ export async function GET(request: Request): Promise<NextResponse> {
         category,
         thumb,
         glass,
-        ingredients
+        ingredients,
         instructions,
         IBA
       FROM all_drinks
