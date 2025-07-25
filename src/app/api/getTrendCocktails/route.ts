@@ -3,40 +3,13 @@ import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 
 export async function GET(request: Request): Promise<NextResponse> {
-  console.log('===GET /api/cocktails called ===');
-
-  const { searchParams } = new URL(request.url);
-  const name = searchParams.get('name');
-  const category = searchParams.get('category');
-
-  console.log('Request parameters:', { name, category });
+  console.log('===GET /api/cocktails called ===',request);
 
   try {
     const connection = await pool.getConnection();
     console.log('✅ Database connection acquired');
 
-    let query = `
-      SELECT
-        name,
-        dateModified,
-        id,
-        alcoholic,
-        category,
-        thumb,
-        glass,
-        ingredients,
-        instructions,
-        IBA
-      FROM all_drinks
-    `;
-
-    if (name) {
-      query += `WHERE name LIKE ${JSON.stringify(name)}`;
-    }
-
-    query += ` ORDER BY name ASC`;
-
-    console.log('Final query:', query);
+    const query = `SELECT * FROM all_drinks ORDER BY RAND() LIMIT 6`;
 
     const [rows] = await connection.execute(query);
     console.log(
