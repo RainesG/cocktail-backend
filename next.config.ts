@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
     // Enable fast refresh for better HMR experience
-    optimizePackageImports: ['sqlite3'],
   },
   // Ensure webpack HMR is enabled
   webpack: (config, { dev, isServer }) => {
