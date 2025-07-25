@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 
 export async function GET(request: Request): Promise<NextResponse> {
-  console.log('===GET /api/cocktails called ===',request);
+  console.log('===GET /api/cocktails called ===', request);
 
   try {
     const connection = await pool.getConnection();
