@@ -3,20 +3,21 @@ import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 
 export async function GET(request: Request): Promise<NextResponse> {
-  console.log('===GET /api/cocktails called ===',request);
+  console.log('===GET /api/cocktails called ===', request);
 
   const { searchParams } = new URL(request.url);
   const name = searchParams.get('name');
   const category = searchParams.get('category');
+  const id = searchParams.get('id');
 
-  console.log('Request parameters:', { name, category });
+  console.log('Request parameters:', { name, category, id });
 
-  if (!name && !category) {
-    console.log('ttt')
+  if (!name && !category && !id) {
+    console.log('ttt');
     return NextResponse.json(
       {
         error: 'arguments error',
-        details: 'Unknown error',
+        details: 'please input cocktail name',
       },
       { status: 500 }
     );
@@ -41,11 +42,21 @@ export async function GET(request: Request): Promise<NextResponse> {
       FROM all_drinks
     `;
 
+    let queryParams;
+
     if (name) {
-      query += `WHERE name LIKE ${JSON.stringify(name+'%')}`;
+      queryParams = `name LIKE ${JSON.stringify(name + '%')}`;
     }
 
-    query += ` ORDER BY name ASC`;
+    if (id) {
+      queryParams = `id LIKE ${JSON.stringify(id + '%')}`;
+    }
+
+    if (category) {
+      queryParams = `category LIKE ${JSON.stringify(category + '%')}`;
+    }
+
+    query += `WHERE ${queryParams} ORDER BY name ASC`;
 
     console.log('Final query:', query);
 
